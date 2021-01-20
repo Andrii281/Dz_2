@@ -18,21 +18,17 @@ console.log(idGenerator.next().value);
 console.log(idGenerator.next().value);
 console.log(idGenerator.next().value);
 
-function newFontGenerator(obj,startSize){
-    obj.style.fontSize = startSize + 'px';
+function newFontGenerator(startSize){
     return{
-        obj: obj,
         value: startSize,
         next(value){
             if(value === 'up'){
                 this.value += 2;
-                this.obj.style.fontSize = this.value + 'px';
             }
 
             if(value === 'down'){
                 if(this.value > 0){
                 this.value -= 2;
-                this.obj.style.fontSize = this.value + 'px';
                 }
             }
             return this;
@@ -40,13 +36,13 @@ function newFontGenerator(obj,startSize){
     }
 }
 
-const fontGenerator = newFontGenerator(textBlock ,14);
+const fontGenerator = newFontGenerator(14);
 
 function downFontSize(){
-    fontGenerator.next("down").value;
+    textBlock.style.fontSize = fontGenerator.next('down').value +'px';
 
 }
 
 function upFontSize(){
-    fontGenerator.next("up").value;
+    textBlock.style.fontSize = fontGenerator.next('up').value +'px';
 }
